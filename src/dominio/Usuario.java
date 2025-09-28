@@ -1,4 +1,5 @@
 package dominio;
+import tads.ListaNodos;
 
 public class Usuario implements Comparable {
 
@@ -35,7 +36,7 @@ public class Usuario implements Comparable {
     public Usuario(String cedula, String nombre) {
         this.cedula = cedula;
         this.nombre = nombre;
-        this.alquileres = new ListaNodos<Alquiler>;
+        this.alquileres = new ListaNodos<Alquiler>();
     }
 
     @Override
