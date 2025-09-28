@@ -31,10 +31,10 @@ public class Sistema implements IObligatorio {
     public Retorno registrarUsuario(String cedula, String nombre) {
         Usuario usuario = new Usuario(cedula, nombre);
 
-        if (cedula.isBlank() || nombre.isBlank()) {
+        if (cedula.isEmpty() || nombre.isEmpty() || cedula == null || nombre == null) {
             return Retorno.error1();
         }
-        if (cedula.length() < 8) {
+        if (cedula.length() < 8 || cedula.length() > 8) {
             return Retorno.error2();
         }
         if (usuarios.obtenerElemento(usuario) != null) {
