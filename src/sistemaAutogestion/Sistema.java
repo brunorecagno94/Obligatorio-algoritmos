@@ -1,7 +1,7 @@
 package sistemaAutogestion;
+
 import tads.ListaNodos;
 import dominio.*;
-
 
 //Bruno Recagno-333245, Victoria Calvo-339977
 public class Sistema implements IObligatorio {
@@ -29,7 +29,20 @@ public class Sistema implements IObligatorio {
 
     @Override
     public Retorno registrarUsuario(String cedula, String nombre) {
-        return Retorno.noImplementada();
+        Usuario usuario = new Usuario(cedula, nombre);
+
+        if (cedula.isBlank() || nombre.isBlank()) {
+            return Retorno.error1();
+        }
+        if (cedula.length() < 8) {
+            return Retorno.error2();
+        }
+        if (usuarios.obtenerElemento(usuario) != null) {
+            return Retorno.error3();
+        }
+
+        usuarios.agregarFinal(usuario);
+        return Retorno.ok();
     }
 
     @Override
