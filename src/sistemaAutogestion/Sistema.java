@@ -30,14 +30,14 @@ public class Sistema implements IObligatorio {
                 || barrio == null
                 || barrio.isBlank()) {
             return Retorno.error1();
-        } else if (capacidad <= 0) {
+        }
+        if(capacidad <= 0){
             return Retorno.error2();
         }
 
         Estacion e = new Estacion(nombre, barrio, capacidad);
-        NodoLista repetida = estaciones.obtenerElemento(e);
 
-        if (repetida != null) {
+        if(estaciones.obtenerElemento(e) != null){
             return Retorno.error3();
         }
 
@@ -66,7 +66,29 @@ public class Sistema implements IObligatorio {
 
     @Override
     public Retorno registrarBicicleta(String codigo, String tipo) {
-        return Retorno.noImplementada();
+        if(codigo == null ||
+           codigo.isBlank() ||
+           tipo == null ||
+           tipo.isBlank()){
+            return Retorno.error1();
+        }       
+        if(codigo.length() != 6){
+            return Retorno.error2();
+        }
+        if(!tipo.equals("URBANA") && 
+           !tipo.equals("MOUNTAIN") &&
+           !tipo.equals("ELECTRICA")){
+            return Retorno.error3();
+        }
+        
+        Bicicleta b = new Bicicleta(codigo, tipo);
+        
+        if(bicicletas.obtenerElemento(b) != null){
+            return Retorno.error4();
+        }
+        
+        bicicletas.agregarOrd(b);
+        return Retorno.ok();
     }
 
     @Override

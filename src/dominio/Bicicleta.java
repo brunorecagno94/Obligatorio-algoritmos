@@ -67,10 +67,15 @@ public class Bicicleta implements Comparable {
         this.usuarioAsignado = null;
     }
 
-    // VALIDAR
-
     @Override
     public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Bicicleta b2 = (Bicicleta)o;
+        return this.codigo.compareTo(b2.codigo);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        Bicicleta b2 = (Bicicleta) obj;
+        return this.codigo.equals(b2.codigo);
     }
 }
