@@ -10,7 +10,7 @@ public class Sistema implements IObligatorio {
     ListaNodos<Estacion> estaciones;
     ListaNodos<Usuario> usuarios;
     ListaNodos<Bicicleta> bicicletas;
-     
+
     public Sistema() {
         this.estaciones = new ListaNodos<Estacion>();
         this.usuarios = new ListaNodos<Usuario>();
@@ -25,41 +25,42 @@ public class Sistema implements IObligatorio {
 
     @Override
     public Retorno registrarEstacion(String nombre, String barrio, int capacidad) {
-        if(nombre == null || 
-                nombre.isBlank() || 
-                barrio == null || 
-                barrio.isBlank()){
+        if (nombre == null
+                || nombre.isBlank()
+                || barrio == null
+                || barrio.isBlank()) {
             return Retorno.error1();
-        }else if(capacidad <= 0){
+        } else if (capacidad <= 0) {
             return Retorno.error2();
         }
-        
+
         Estacion e = new Estacion(nombre, barrio, capacidad);
         NodoLista repetida = estaciones.obtenerElemento(e);
-        
-        if(repetida != null){
+
+        if (repetida != null) {
             return Retorno.error3();
-        }    
-        
+        }
+
         estaciones.agregarOrd(e);
         return Retorno.ok();
     }
 
     @Override
     public Retorno registrarUsuario(String cedula, String nombre) {
-        Usuario usuario = new Usuario(cedula, nombre);
-
-        if (cedula.isEmpty() || nombre.isEmpty() || cedula == null || nombre == null) {
+        if (cedula == null || nombre == null || cedula.isBlank() || nombre.isBlank()) {
             return Retorno.error1();
         }
-        if (cedula.length() < 8 || cedula.length() > 8) {
+        if (cedula.length() != 8) {
             return Retorno.error2();
         }
+        
+        Usuario usuario = new Usuario(cedula, nombre);
+        
         if (usuarios.obtenerElemento(usuario) != null) {
             return Retorno.error3();
         }
 
-        usuarios.agregarFinal(usuario);
+        usuarios.agregarOrd(usuario);
         return Retorno.ok();
     }
 
