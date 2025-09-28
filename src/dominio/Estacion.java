@@ -1,6 +1,7 @@
 package dominio;
+import tads.ListaNodos;
 
-public class Estacion {
+public class Estacion implements Comparable{
     private String nombre;
     private String barrio;
     private int capacidad;
@@ -22,12 +23,12 @@ public class Estacion {
         return capacidad;
     }
 
-    public int getAnclajesOcupados() {
-        return anclajesOcupados;
+    public int getAnclajesLibres() {
+        return anclajesLibres;
     }
 
-    public boolean tieneAnclajes() {
-        return tieneAnclajes;
+    public ListaNodos<Bicicleta> getListaBicis() {
+        return listaBicis;
     }
 
     // Setters
@@ -47,16 +48,17 @@ public class Estacion {
         this.anclajesLibres = anclajesLibres;
     }
 
-    public void setTieneAnclajes(boolean tieneAnclajes) {
-        this.tieneAnclajes = tieneAnclajes;
+    public void setListaBicis(ListaNodos<Bicicleta> listaBicis) {
+        this.listaBicis = listaBicis;
     }
+    
 
     public Estacion(String nombre, String barrio, int capacidad, int anclajesLibres) {
         this.nombre = nombre;
         this.barrio = barrio;
         this.capacidad = capacidad;
         this.anclajesLibres = anclajesLibres;
-        this.listaBicis = new ListaNodos<Bicicleta>;
+        this.listaBicis = new ListaNodos<Bicicleta>();
     }
 
     // Metodos
@@ -67,5 +69,10 @@ public class Estacion {
 
     public boolean tieneAnclajesLibres() {
         return this.getAnclajesLibres() - this.getCapacidad() == 0;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
