@@ -3,12 +3,19 @@ package sistemaAutogestion;
 //Agregar aquí nombres y números de estudiante de los integrantes del equipo
 public class Sistema implements IObligatorio {
 
-    //ListaNodos<Estacion> estaciones;
+    ListaNodos<Estacion> estaciones;
+    ListaNodos<Usuario> usuarios;
+    ListaNodos<Bicicleta> bicicletas;
+
+    public Sistema() {
+        this.estaciones =  = new ListaNodos<Estacion>;
+        this.usuarios = new ListaNodos<Usuario>;
+        this.bicicletas = new ListaNodos<Bicicleta>;
+    }
 
     @Override
     public Retorno crearSistemaDeGestion() {
-        //estaciones = null;
-        // demás listas
+        Sistema sistema = new Sistema;
         return Retorno.ok();
     }
 

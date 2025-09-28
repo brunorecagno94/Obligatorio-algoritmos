@@ -1,24 +1,15 @@
 package dominio;
 
 public class Estacion {
-
-    private static int id = 1;
     private String nombre;
     private String barrio;
     private int capacidad;
-    private int anclajesOcupados;
-    private boolean tieneAnclajes;
-
-    public static void main(String[] args) {
-        Estacion e = new Estacion("ee", "333", 4);
-        System.out.println(e);
-    }
+    private int anclajesLibres;
+    private ListaNodos<Bicicleta> listaBicis;
+    //private ColaNodos<Usuario> listaEsperaAlquiler;
+    //private ColaNodos<Usuario> listaEsperaAnclaje;
 
     // Getters
-    public static int getId() {
-        return id;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -40,10 +31,6 @@ public class Estacion {
     }
 
     // Setters
-    public static void setId(int id) {
-        Estacion.id = id;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -56,30 +43,29 @@ public class Estacion {
         this.capacidad = capacidad;
     }
 
-    public void setAnclajesOcupados(int anclajesOcupados) {
-        this.anclajesOcupados = anclajesOcupados;
+    public void setAnclajesLibres(int anclajesLibres) {
+        this.anclajesLibres = anclajesLibres;
     }
 
     public void setTieneAnclajes(boolean tieneAnclajes) {
         this.tieneAnclajes = tieneAnclajes;
     }
 
-    public Estacion(String nombre, String barrio, int capacidad) {
-        this.id = id++;
+    public Estacion(String nombre, String barrio, int capacidad, int anclajesLibres) {
         this.nombre = nombre;
         this.barrio = barrio;
         this.capacidad = capacidad;
-        this.anclajesOcupados = 0;
-        this.tieneAnclajes = true;
+        this.anclajesLibres = anclajesLibres;
+        this.listaBicis = new ListaNodos<Bicicleta>;
     }
 
     // Metodos
     @Override
     public String toString() {
-        return "ID: " + id + "Estacion:" + "nombre=" + nombre + ", barrio=" + barrio + ", capacidad=" + capacidad + ", anclajesOcupados=" + anclajesOcupados + '}';
+        return "Estacion:" + "nombre=" + nombre + ", barrio=" + barrio + ", capacidad=" + capacidad + ", anclajesLibres=" + anclajesLibres + '}';
     }
 
     public boolean tieneAnclajesLibres() {
-        return this.getAnclajesOcupados() == this.getCapacidad();
+        return this.getAnclajesLibres() - this.getCapacidad() == 0;
     }
 }
