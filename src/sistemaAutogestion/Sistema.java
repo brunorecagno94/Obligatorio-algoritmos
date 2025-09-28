@@ -1,6 +1,9 @@
 package sistemaAutogestion;
+import tads.ListaNodos;
+import dominio.*;
 
-//Agregar aquí nombres y números de estudiante de los integrantes del equipo
+
+//Bruno Recagno-333245, Victoria Calvo-339977
 public class Sistema implements IObligatorio {
 
     ListaNodos<Estacion> estaciones;
@@ -8,14 +11,14 @@ public class Sistema implements IObligatorio {
     ListaNodos<Bicicleta> bicicletas;
 
     public Sistema() {
-        this.estaciones =  = new ListaNodos<Estacion>;
-        this.usuarios = new ListaNodos<Usuario>;
-        this.bicicletas = new ListaNodos<Bicicleta>;
+        this.estaciones = new ListaNodos<Estacion>();
+        this.usuarios = new ListaNodos<Usuario>();
+        this.bicicletas = new ListaNodos<Bicicleta>();
     }
 
     @Override
     public Retorno crearSistemaDeGestion() {
-        Sistema sistema = new Sistema;
+        Sistema sistema = new Sistema();
         return Retorno.ok();
     }
 
