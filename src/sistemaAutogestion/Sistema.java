@@ -1,6 +1,7 @@
 package sistemaAutogestion;
 
 import tads.ListaNodos;
+import tads.NodoLista;
 import dominio.*;
 
 //Bruno Recagno-333245, Victoria Calvo-339977
@@ -9,7 +10,7 @@ public class Sistema implements IObligatorio {
     ListaNodos<Estacion> estaciones;
     ListaNodos<Usuario> usuarios;
     ListaNodos<Bicicleta> bicicletas;
-
+     
     public Sistema() {
         this.estaciones = new ListaNodos<Estacion>();
         this.usuarios = new ListaNodos<Usuario>();
@@ -24,7 +25,24 @@ public class Sistema implements IObligatorio {
 
     @Override
     public Retorno registrarEstacion(String nombre, String barrio, int capacidad) {
-        return Retorno.noImplementada();
+        if(nombre == null || 
+                nombre.isBlank() || 
+                barrio == null || 
+                barrio.isBlank()){
+            return Retorno.error1();
+        }else if(capacidad <= 0){
+            return Retorno.error2();
+        }
+        
+        Estacion e = new Estacion(nombre, barrio, capacidad);
+        NodoLista repetida = estaciones.obtenerElemento(e);
+        
+        if(repetida != null){
+            return Retorno.error3();
+        }    
+        
+        estaciones.agregarOrd(e);
+        return Retorno.ok();
     }
 
     @Override

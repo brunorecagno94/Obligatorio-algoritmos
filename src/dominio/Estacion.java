@@ -5,7 +5,7 @@ public class Estacion implements Comparable{
     private String nombre;
     private String barrio;
     private int capacidad;
-    private int anclajesLibres;
+    private int anclajesOcupados;
     private ListaNodos<Bicicleta> listaBicis;
     //private ColaNodos<Usuario> listaEsperaAlquiler;
     //private ColaNodos<Usuario> listaEsperaAnclaje;
@@ -23,8 +23,8 @@ public class Estacion implements Comparable{
         return capacidad;
     }
 
-    public int getAnclajesLibres() {
-        return anclajesLibres;
+    public int getAnclajesOcupados() {
+        return anclajesOcupados;
     }
 
     public ListaNodos<Bicicleta> getListaBicis() {
@@ -44,35 +44,41 @@ public class Estacion implements Comparable{
         this.capacidad = capacidad;
     }
 
-    public void setAnclajesLibres(int anclajesLibres) {
-        this.anclajesLibres = anclajesLibres;
+    public void setAnclajesOcupados(int anclajesOcupados) {
+        this.anclajesOcupados = anclajesOcupados;
     }
-
+        
     public void setListaBicis(ListaNodos<Bicicleta> listaBicis) {
         this.listaBicis = listaBicis;
     }
     
 
-    public Estacion(String nombre, String barrio, int capacidad, int anclajesLibres) {
+    public Estacion(String nombre, String barrio, int capacidad) {
         this.nombre = nombre;
         this.barrio = barrio;
         this.capacidad = capacidad;
-        this.anclajesLibres = anclajesLibres;
+        this.anclajesOcupados = 0;
         this.listaBicis = new ListaNodos<Bicicleta>();
     }
 
     // Metodos
     @Override
     public String toString() {
-        return "Estacion:" + "nombre=" + nombre + ", barrio=" + barrio + ", capacidad=" + capacidad + ", anclajesLibres=" + anclajesLibres + '}';
-    }
-
-    public boolean tieneAnclajesLibres() {
-        return this.getAnclajesLibres() - this.getCapacidad() == 0;
+        return "Estacion:" + nombre + 
+               ", barrio: " + barrio + 
+               ", capacidad: " + capacidad + 
+               ", anclajes ocupados: " + anclajesOcupados;
     }
 
     @Override
     public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Estacion e2 = (Estacion)o;
+        return this.nombre.compareTo(e2.nombre);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        Estacion e2 = (Estacion) obj;
+        return this.nombre.equals(e2.nombre);
     }
 }
